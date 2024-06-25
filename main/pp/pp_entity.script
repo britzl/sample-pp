@@ -1,0 +1,24 @@
+go.property("use_server_position", true)
+
+function init(self)
+	self.time = socket.gettime()
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("pp_update") then
+		local now = socket.gettime()
+		local dt = now - self.time
+		self.time = now
+		if self.use_server_position then
+			local x = message.x
+			local y = message.y
+			local z = 1 - (message.y / 10000)
+			local new_pos = vmath.vector3(x, y, z)
+			--local current_pos = go.get_position()
+			--local distance = vmath.length(current_pos - new_pos)
+			go.animate(".", "position", go.PLAYBACK_ONCE_FORWARD, new_pos, go.EASING_LINEAR, dt)
+			--go.set_position(new_pos)
+		end
+		self.uuid = message.uuid
+	end
+end
