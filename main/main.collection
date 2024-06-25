@@ -1,4 +1,24 @@
 name: "main"
+instances {
+  id: "player"
+  prototype: "/main/entities/player/player.go"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "pp"
@@ -27,7 +47,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"treefactory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/tree.go\\\"\\n"
+  "  data: \"prototype: \\\"/main/entities/tree/tree.go\\\"\\n"
   "load_dynamically: false\\n"
   "dynamic_prototype: false\\n"
   "\"\n"
@@ -46,7 +66,26 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"sheepfactory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/sheep.go\\\"\\n"
+  "  data: \"prototype: \\\"/main/entities/sheep/sheep.go\\\"\\n"
+  "load_dynamically: false\\n"
+  "dynamic_prototype: false\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"grassfactory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/entities/grass/grass.go\\\"\\n"
   "load_dynamically: false\\n"
   "dynamic_prototype: false\\n"
   "\"\n"
@@ -81,10 +120,10 @@ embedded_instances {
   }
 }
 embedded_instances {
-  id: "player"
+  id: "game"
   data: "components {\n"
-  "  id: \"player\"\n"
-  "  component: \"/main/player.script\"\n"
+  "  id: \"game\"\n"
+  "  component: \"/main/game.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -97,57 +136,6 @@ embedded_instances {
   "    w: 1.0\n"
   "  }\n"
   "  property_decls {\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"sprite\"\n"
-  "  type: \"sprite\"\n"
-  "  data: \"default_animation: \\\"warrior_run\\\"\\n"
-  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
-  "blend_mode: BLEND_MODE_ALPHA\\n"
-  "textures {\\n"
-  "  sampler: \\\"texture_sampler\\\"\\n"
-  "  texture: \\\"/assets/game.atlas\\\"\\n"
-  "}\\n"
-  "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 3.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "  scale {\n"
-  "    x: 0.1\n"
-  "    y: 0.1\n"
-  "    z: 0.1\n"
-  "  }\n"
-  "}\n"
-  "embedded_components {\n"
-  "  id: \"camera\"\n"
-  "  type: \"camera\"\n"
-  "  data: \"aspect_ratio: 1.0\\n"
-  "fov: 0.7854\\n"
-  "near_z: -10.0\\n"
-  "far_z: 10.0\\n"
-  "auto_aspect_ratio: 0\\n"
-  "orthographic_projection: 1\\n"
-  "orthographic_zoom: 10.0\\n"
-  "\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
   "  }\n"
   "}\n"
   ""

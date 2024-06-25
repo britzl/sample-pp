@@ -1,18 +1,3 @@
-components {
-  id: "entity"
-  component: "/main/pp/pp_entity.script"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-}
 embedded_components {
   id: "sprite"
   type: "sprite"
@@ -21,7 +6,7 @@ embedded_components {
   "blend_mode: BLEND_MODE_ALPHA\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/game.atlas\"\n"
+  "  texture: \"/assets/entities.atlas\"\n"
   "}\n"
   ""
   position {

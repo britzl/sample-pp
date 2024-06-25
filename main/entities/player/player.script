@@ -1,5 +1,11 @@
+local util = require("main.util")
+
+go.property("connected", false)
+
 local ANIM_IDLE = hash("warrior_idle")
 local ANIM_RUN = hash("warrior_run")
+
+local SPEED = 10
 
 local function play_anim(self, anim)
 	if self.anim ~= anim then
@@ -11,14 +17,9 @@ end
 function init(self)
 	self.anim = nil
 	self.dir = vmath.vector3()
-	self.connected = false
 
 	msg.post("#", "acquire_input_focus")
 	msg.post("@render:", "use_camera_projection")
-
-	local username = nil
-	local password = nil
-	msg.post("/pp", "pp_init", { username = username, password = password })
 
 	play_anim(self, ANIM_IDLE)
 end
@@ -26,10 +27,8 @@ end
 function update(self, dt)
 	if not self.connected then return end
 	
-	local move = self.dir * 10 * dt
-	local pos = go.get_position()
-	pos = pos + move
-	pos.z = 1 - (pos.y / 10000)
+	local move = self.dir * SPEED * dt
+	local pos = util.zort(go.get_position() + move)
 	go.set_position(pos)
 
 	if move.x ~= 0 or move.y ~= 0 then
@@ -59,20 +58,8 @@ function on_input(self, action_id, action)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("pp_connected") then
-		print("player connected")
-		msg.post("/pp", "pp_join")
+	if message_id == hash("pp_update") then
 		self.connected = true
-	elseif message_id == hash("pp_disconnected") then
-		print("player disconnected")
-		self.connected = false
-		play_anim(self, ANIM_IDLE)
-	elseif message_id == hash("pp_authentication_error") then
-		print("auth error")
-		pprint(message)
-	elseif message_id == hash("pp_connection_error") then
-		print("connection error")
-		pprint(message)
 	else
 		print(message_id)
 	end

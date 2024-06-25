@@ -1,0 +1,54 @@
+local ENTITIES = {
+	grass = require("main.entities.grass.grass"),
+	sheep = require("main.entities.sheep.sheep"),
+	tree = require("main.entities.tree.tree"),
+}
+go.property("connected", false)
+
+function init(self)
+	self.entities = {}
+
+	local username = nil
+	local password = nil
+	msg.post("/pp", "pp_init", { username = username, password = password })
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("pp_update") then
+		local entity = self.entities[message.id]
+		local model = ENTITIES[entity.type]
+		if model and model.update then
+			model.update(entity, message)
+		end
+	elseif message_id == hash("pp_spawn") then
+		local entity = message
+		self.entities[message.id] = entity
+		local model = ENTITIES[entity.type]
+		if model and model.created then
+			model.created(entity, message)
+		end
+	elseif message_id == hash("pp_delete") then
+		local entity = self.entities[message.id]
+		self.entities[message.id] = nil
+		local model = ENTITIES[entity.type]
+		if model and model.update then
+			model.deleted(entity, message)
+		end
+	elseif message_id == hash("pp_connected") then
+		print("connected")
+		msg.post("/pp", "pp_join")
+		self.connected = true
+	elseif message_id == hash("pp_disconnected") then
+		print("disconnected")
+		self.connected = false
+		go.set("/player#script", "connected", false)
+	elseif message_id == hash("pp_authentication_error") then
+		print("auth error")
+		pprint(message)
+	elseif message_id == hash("pp_connection_error") then
+		print("connection error")
+		pprint(message)
+	else
+		print(message_id)
+	end
+end

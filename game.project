@@ -14,6 +14,10 @@ input_method = HiddenInputField
 [sprite]
 max_count = 2048
 
+[tilemap]
+max_tile_count = 16384
+max_count = 64
+
 [project]
 dependencies#0 = https://github.com/Planetary-Processing/defold-sdk/archive/master.zip
 dependencies#1 = https://github.com/Melsoft-Games/defold-protobuf/archive/master.zip
