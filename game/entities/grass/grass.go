@@ -1,6 +1,6 @@
 components {
   id: "grass"
-  component: "/main/entities/grass/grass.tilemap"
+  component: "/game/entities/grass/grass.tilemap"
   position {
     x: 0.0
     y: 0.0

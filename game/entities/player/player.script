@@ -1,15 +1,18 @@
-local util = require("main.util")
+local util = require("game.util")
 
 go.property("connected", false)
 
 local ANIM_IDLE = hash("warrior_idle")
 local ANIM_RUN = hash("warrior_run")
+local ANIM_ATTACK_FRONT = hash("warrior_attack_front")
+local ANIM_ATTACK_UP = hash("warrior_attack_up")
+local ANIM_ATTACK_DOWN = hash("warrior_attack_down")
 
 local SPEED = 10
 
-local function play_anim(self, anim)
+local function play_anim(self, anim, cb)
 	if self.anim ~= anim then
-		sprite.play_flipbook("#sprite", anim)
+		sprite.play_flipbook("#sprite", anim, cb)
 		self.anim = anim
 	end
 end
@@ -25,18 +28,17 @@ function init(self)
 end
 
 function update(self, dt)
+	-- early out if not connected
 	if not self.connected then return end
+	-- early out if attacking
+	if self.attacking then return end
 	
 	local move = self.dir * SPEED * dt
 	local pos = util.zort(go.get_position() + move)
 	go.set_position(pos)
 
 	if move.x ~= 0 or move.y ~= 0 then
-		local d = {
-			x = move.x,
-			y = move.y,
-		}
-		msg.post("/pp", "pp_message", d)
+		msg.post("/pp", "pp_message", { action = "move", x = move.x, y = move.y })
 		sprite.set_hflip("#sprite", move.x < 0)
 		play_anim(self, ANIM_RUN)
 	else
@@ -54,6 +56,27 @@ function on_input(self, action_id, action)
 		self.dir.x = -action.value
 	elseif action_id == hash("right") then
 		self.dir.x = action.value
+	end
+
+	if action_id == hash("attack") and action.pressed and not self.attacking then
+		self.attacking = true
+		msg.post("/pp", "pp_message", { action = "attack" })
+		if self.dir.y > 0 then
+			play_anim(self, ANIM_ATTACK_UP, function()
+				self.attacking = false
+				play_anim(self, ANIM_IDLE)
+			end)
+		elseif self.dir.y < 0 then
+			play_anim(self, ANIM_ATTACK_DOWN, function()
+				self.attacking = false
+				play_anim(self, ANIM_IDLE)
+			end)
+		else
+			play_anim(self, ANIM_ATTACK_FRONT, function()
+				self.attacking = false
+				play_anim(self, ANIM_IDLE)
+			end)
+		end
 	end
 end
 

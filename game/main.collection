@@ -1,7 +1,7 @@
 name: "main"
 instances {
   id: "player"
-  prototype: "/main/entities/player/player.go"
+  prototype: "/game/entities/player/player.go"
   position {
     x: 0.0
     y: 0.0
@@ -24,7 +24,7 @@ embedded_instances {
   id: "pp"
   data: "components {\n"
   "  id: \"master\"\n"
-  "  component: \"/main/pp/pp_master.script\"\n"
+  "  component: \"/game/pp/pp_master.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -47,7 +47,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"treefactory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/entities/tree/tree.go\\\"\\n"
+  "  data: \"prototype: \\\"/game/entities/tree/tree.go\\\"\\n"
   "load_dynamically: false\\n"
   "dynamic_prototype: false\\n"
   "\"\n"
@@ -66,7 +66,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"sheepfactory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/entities/sheep/sheep.go\\\"\\n"
+  "  data: \"prototype: \\\"/game/entities/sheep/sheep.go\\\"\\n"
   "load_dynamically: false\\n"
   "dynamic_prototype: false\\n"
   "\"\n"
@@ -85,7 +85,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"grassfactory\"\n"
   "  type: \"factory\"\n"
-  "  data: \"prototype: \\\"/main/entities/grass/grass.go\\\"\\n"
+  "  data: \"prototype: \\\"/game/entities/grass/grass.go\\\"\\n"
   "load_dynamically: false\\n"
   "dynamic_prototype: false\\n"
   "\"\n"
@@ -123,7 +123,7 @@ embedded_instances {
   id: "game"
   data: "components {\n"
   "  id: \"game\"\n"
-  "  component: \"/main/game.script\"\n"
+  "  component: \"/game/game.script\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"

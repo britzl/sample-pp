@@ -1,7 +1,7 @@
 local ENTITIES = {
-	grass = require("main.entities.grass.grass"),
-	sheep = require("main.entities.sheep.sheep"),
-	tree = require("main.entities.tree.tree"),
+	grass = require("game.entities.grass.grass"),
+	sheep = require("game.entities.sheep.sheep"),
+	tree = require("game.entities.tree.tree"),
 }
 go.property("connected", false)
 

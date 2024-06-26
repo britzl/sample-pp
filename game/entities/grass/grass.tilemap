@@ -1,4 +1,4 @@
-tile_set: "/assets/terrain.tilesource"
+tile_set: "/game/assets/terrain.tilesource"
 layers {
   id: "layer1"
   z: 0.0

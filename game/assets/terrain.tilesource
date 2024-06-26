@@ -1,4 +1,4 @@
-image: "/assets/tilemaps/Tilemap_Flat.png"
+image: "/game/assets/tilemaps/Tilemap_Flat.png"
 tile_width: 64
 tile_height: 64
 tile_margin: 0

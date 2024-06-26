@@ -1,4 +1,4 @@
-local util = require("main.util")
+local util = require("game.util")
 
 local M = {}
 

@@ -1,17 +1,17 @@
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "default_animation: \"sheep_bounce\"\n"
+  data: "default_animation: \"tree\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/entities.atlas\"\n"
+  "  texture: \"/game/assets/entities.atlas\"\n"
   "}\n"
   ""
   position {
     x: 0.0
-    y: 2.0
+    y: 9.0
     z: 0.0
   }
   rotation {

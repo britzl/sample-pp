@@ -1,6 +1,6 @@
 components {
   id: "player"
-  component: "/main/entities/player/player.script"
+  component: "/game/entities/player/player.script"
   position {
     x: 0.0
     y: 0.0
@@ -44,7 +44,7 @@ embedded_components {
   "blend_mode: BLEND_MODE_ALPHA\n"
   "textures {\n"
   "  sampler: \"texture_sampler\"\n"
-  "  texture: \"/assets/entities.atlas\"\n"
+  "  texture: \"/game/assets/entities.atlas\"\n"
   "}\n"
   ""
   position {
